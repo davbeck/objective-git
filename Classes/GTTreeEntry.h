@@ -42,6 +42,7 @@
 
 - (NSString *)name;
 - (NSInteger)attributes;
+- (NSString *)type;
 - (NSString *)sha;
 
 // Turn entry into an GTObject

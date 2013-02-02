@@ -43,7 +43,7 @@
 @implementation GTTreeEntry
 
 - (NSString *)description {
-	return [NSString stringWithFormat:@"<%@: %p> name: %@, sha: %@ attributes: %lu", NSStringFromClass([self class]), self, [self name], [self sha], (unsigned long)[self attributes]];
+	return [NSString stringWithFormat:@"<%@: %p> name: %@, sha: %@ attributes: %lu type: %@", NSStringFromClass([self class]), self, [self name], [self sha], (unsigned long)[self attributes], self.type];
 }
 
 - (void)dealloc {
@@ -74,6 +74,10 @@
 
 - (NSInteger)attributes {
 	return git_tree_entry_filemode(self.git_tree_entry);
+}
+
+- (NSString *)type {
+	return [NSString stringWithUTF8String:git_object_type2string(git_tree_entry_type(self.git_tree_entry))];
 }
 
 - (NSString *)sha {
