@@ -59,6 +59,10 @@
 @synthesize options;
 
 - (id)initWithRepository:(GTRepository *)theRepo error:(NSError **)error {
+	if (theRepo == nil) {
+		return nil;
+	}
+	
 	if((self = [super init])) {
 		self.repository = theRepo;
 		git_revwalk *w;
