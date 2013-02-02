@@ -98,10 +98,6 @@
 @implementation GTObject (GTTreeEntry)
 
 + (id)objectWithTreeEntry:(GTTreeEntry *)treeEntry error:(NSError **)error {
-    return [[self alloc] initWithTreeEntry:treeEntry error:error];
-}
-
-- (id)initWithTreeEntry:(GTTreeEntry *)treeEntry error:(NSError **)error {
     git_object *obj;
     int gitError = git_tree_entry_to_object(&obj, treeEntry.repository.git_repository, treeEntry.git_tree_entry);
     if (gitError < GIT_OK) {
@@ -111,7 +107,11 @@
         return nil;
     }
     
-    return [self initWithObj:obj inRepository:treeEntry.repository];
+    return [self objectWithObj:obj inRepository:treeEntry.repository];
+}
+
+- (id)initWithTreeEntry:(GTTreeEntry *)treeEntry error:(NSError **)error {
+	return [[self class] objectWithTreeEntry:treeEntry error:error];
 }
 
 @end

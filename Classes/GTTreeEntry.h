@@ -58,6 +58,6 @@
 @interface GTObject (GTTreeEntry)
 
 + (id)objectWithTreeEntry:(GTTreeEntry *)treeEntry error:(NSError **)error;
-- (id)initWithTreeEntry:(GTTreeEntry *)treeEntry error:(NSError **)error;
+- (id)initWithTreeEntry:(GTTreeEntry *)treeEntry error:(NSError **)error __attribute__((deprecated));
 
 @end
