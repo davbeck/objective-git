@@ -518,6 +518,10 @@ static int file_status_callback(const char *relativeFilePath, unsigned int gitSt
 }
 
 - (GTEnumerator *)enumerator {
+	if (![NSThread isMainThread]) {
+		NSLog(@"Warning: accessing the repository enumerator from background thread!");
+	}
+	
 	if (_enumerator == nil) {
 		self.enumerator = [[GTEnumerator alloc] initWithRepository:self error:NULL];
 	}
