@@ -46,5 +46,6 @@
 - (git_off_t)size;
 - (NSString *)content;
 - (NSData *)data;
+- (BOOL)isBinary;
 
 @end

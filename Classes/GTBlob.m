@@ -120,4 +120,9 @@
     return [NSData dataWithBytes:git_blob_rawcontent(self.git_blob) length:(NSUInteger)s];
 }
 
+- (BOOL)isBinary
+{
+	return git_blob_is_binary(self.git_blob) == 1;
+}
+
 @end
